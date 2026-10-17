@@ -30,7 +30,7 @@ from sqlalchemy import create_engine, text
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-RATES_CSV = ROOT / "crashRatesBySegment.csv"
+RATES_CSV = ROOT / "normalized_crash_rates" / "crashRatesBySegment.csv"
 CITY_CRASHES = ROOT / "data" / "AccidentData21-26.csv.xlsx"
 SGID = "postgresql://agrc:agrc@opensgid.ugrc.utah.gov:5432/opensgid"
 METERS_PER_MILE = 1609.344

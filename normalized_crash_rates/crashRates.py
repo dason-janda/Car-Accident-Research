@@ -11,6 +11,8 @@ many segments run past St. George city limits, and the city extract only
 has the crashes inside the city. Matching is by route number + milepoint.
 """
 
+from pathlib import Path
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -20,8 +22,10 @@ pd.set_option("display.width", 220)
 pd.set_option("display.max_columns", None)
 pd.set_option("display.max_colwidth", 60)
 
-AADT_PATH = "data/AADTHistory 2024.xlsx"
-STATE_CACHE = "data/StatewideCrashes.pkl"
+HERE = Path(__file__).resolve().parent
+DATA = HERE.parent / "data"
+AADT_PATH = DATA / "AADTHistory 2024.xlsx"
+STATE_CACHE = DATA / "StatewideCrashes.pkl"
 WASHINGTON_COUNTY_STATION_PREFIX = "053"
 
 # Crash data runs Jun 1 2021 - May 31 2026.
@@ -165,7 +169,7 @@ print("route; verify that count before treating the segment as a real anomaly.")
 print("\nHighest raw crash counts, for comparison (count alone ignores traffic volume):\n")
 print(report.sort_values("Crashes", ascending=False).head(10).to_string(index=False))
 
-segments.sort_values("rate_ratio", ascending=False).to_csv("crashRatesBySegment.csv", index=False)
+segments.sort_values("rate_ratio", ascending=False).to_csv(HERE / "crashRatesBySegment.csv", index=False)
 
 # --------------------------------------------------------------------------
 # Plot
@@ -184,7 +188,7 @@ ax.set_title("St. George Road Segments Ranked by Crash Rate / Critical Rate\n"
              "Red = statistically higher than similar roads in Washington County")
 ax.legend(loc="lower right")
 plt.tight_layout()
-fig.savefig("segmentCrashRates.png", dpi=150)
+fig.savefig(HERE / "segmentCrashRates.png", dpi=150)
 plt.close(fig)
 
 print("\nSaved crashRatesBySegment.csv and segmentCrashRates.png")

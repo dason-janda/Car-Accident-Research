@@ -29,7 +29,7 @@ from matplotlib.colors import LogNorm
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
-RATES_CSV = ROOT / "crashRatesBySegment.csv"
+RATES_CSV = ROOT / "normalized_crash_rates" / "crashRatesBySegment.csv"
 STATE_CACHE = ROOT / "data" / "StatewideCrashes.pkl"
 
 # Leaflet's heat layer scales color linearly to the hottest point, so a handful of
