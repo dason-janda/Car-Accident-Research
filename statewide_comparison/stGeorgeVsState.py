@@ -16,8 +16,10 @@ from scipy.stats import chi2_contingency
 pd.set_option("display.width", 200)
 pd.set_option("display.max_columns", None)
 
-XLSX_PATH = Path("data/StatewideAccidentData21-26.xlsx")
-CACHE_PATH = Path("data/StatewideCrashes.pkl")
+HERE = Path(__file__).resolve().parent
+DATA = HERE.parent / "data"
+XLSX_PATH = DATA / "StatewideAccidentData21-26.xlsx"
+CACHE_PATH = DATA / "StatewideCrashes.pkl"
 
 # 2020 Census counts. Swap in estimates for another year if you prefer;
 # the per-capita result is sensitive to this choice (St. George has grown fast).
@@ -137,7 +139,7 @@ ax.set_title("Share of Crashes by Junction Type: St. George vs. Utah")
 ax.set_xlabel("% of crashes")
 ax.set_ylabel("")
 plt.tight_layout()
-fig.savefig("junctionTypeComparison.png", dpi=150)
+fig.savefig(HERE / "junctionTypeComparison.png", dpi=150)
 plt.close(fig)
 
 fig, ax = plt.subplots(figsize=(9, 5))
@@ -147,7 +149,7 @@ ax.set_ylabel("% of crashes")
 ax.set_xlabel("")
 plt.xticks(rotation=20, ha="right")
 plt.tight_layout()
-fig.savefig("severityComparison.png", dpi=150)
+fig.savefig(HERE / "severityComparison.png", dpi=150)
 plt.close(fig)
 
 print("\nSaved junctionTypeComparison.png and severityComparison.png")

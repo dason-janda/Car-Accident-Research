@@ -1,0 +1,14 @@
+pandas
+numpy
+matplotlib
+scipy
+statsmodels
+scikit-learn
+geopandas
+shapely
+sqlalchemy
+psycopg2-binary
+folium
+openpyxl
+requests
+python-dateutil
